@@ -1,11 +1,25 @@
 body {
 	text-align: center;
 	font-family: Helvetica, sans-serif;
+	margin: 0;
 }
 
 h1 {
 	font-size: 42px;
 	color: red;
+}
+
+/* Menu */
+
+
+#container-initial {
+	background-image: linear-gradient(to top, white, #FFA500);
+	height: 700px;
+	width: 500px;
+	padding-top: 1px;
+	padding-bottom: 20px;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 /* botões */
@@ -14,6 +28,12 @@ h1 {
 	border: none;
 	padding: 10px 15px;
 	margin:0 15px 10px;
+}
+
+#two-players, #ia-player{
+	color: #fff;
+  	background-color: #007bff;
+  	border-color: #007bff;
 }
 
 /* jogo */
@@ -27,6 +47,7 @@ h1 {
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 10px;
 }
 
 .box {
