@@ -95,10 +95,9 @@ h1 {
 
 /* Esconder */
 
-/* .hide {
+.hide {
 	display: none !important;
 }
-*/
 
 /* placar */
 
@@ -144,5 +143,5 @@ h1 {
 	font-size:60px;
 	background: black;
 	color: white;
-	display: none;
+	/*display: none;*/
 }
