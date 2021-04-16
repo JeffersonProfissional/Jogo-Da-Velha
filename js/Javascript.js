@@ -4,6 +4,7 @@ let boxes = document.querySelectorAll(".box");
 let buttons = document.querySelectorAll("#buttons-container button");
 let messageContainer = document.querySelector("#message");
 let messageText = document.querySelector("#message p");
+let container = document.querySelector("#container");
 let secondPlayer;
 
 //Contador de jogadas
@@ -20,15 +21,11 @@ for(let i = 0; i < boxes.length; i++) {
 	boxes[i].addEventListener("click", () => {
 
 		let element = CheckElement(player1,player2);
-
-		CheckElement();
 	
 	//Verificação de elemento X ou O na div boxes, se não houver aceita e computa a jogada
 
 		if(boxes[i].childNodes.length == 0){
 			let cloneElement = element.cloneNode(true);
-
-			console.log(cloneElement);
 
 			boxes[i].appendChild(cloneElement);
 
@@ -36,6 +33,14 @@ for(let i = 0; i < boxes.length; i++) {
 			
 			if(player1 == player2) {
 				player1++;
+
+				if(secondPlayer == 'ia-player'){
+					player2++;
+					//funcao executar jogar
+					ComputerPlay();
+
+					
+				}
 			}else{
 				player2++;
 			}
@@ -43,6 +48,35 @@ for(let i = 0; i < boxes.length; i++) {
 
 		CheckWinCondition();
 
+	});
+}
+
+//Evento dos botões 2 players e IA
+for(let i = 0; i < buttons.length; i++){
+
+	buttons[i].addEventListener("click", () => {
+
+		secondPlayer = buttons[i].getAttribute("id");
+
+		for(let j = 0; j < buttons.length; j++){
+			buttons[j].style.display = 'none';
+		}
+
+		setTimeout(() =>{
+
+			container.classList.remove("hide");
+
+		}, 1000);
+
+		/*switch (secondPlayer){
+			case 'two-players':
+				
+				break;
+			case 'ia-player':
+				
+				break;
+		}*/
+		
 	});
 }
 
@@ -58,6 +92,8 @@ function CheckElement(player1, player2){
 	return el;
 
 }
+
+//Checa as condições de vitória
 
 function CheckWinCondition() {
 
@@ -83,7 +119,7 @@ function CheckWinCondition() {
 		result = CheckLine(b1ClassChild,b2ClassChild,b3ClassChild);
 
 		if(result){
-			declareWinner(player);
+			DeclareWinner(player);
 		}
 
 
@@ -97,7 +133,7 @@ function CheckWinCondition() {
 		result = CheckLine(b1ClassChild,b2ClassChild,b3ClassChild);
 
 		if(result){
-			declareWinner(player);
+			DeclareWinner(player);
 		}
 
 
@@ -111,7 +147,7 @@ function CheckWinCondition() {
 		result = CheckLine(b1ClassChild,b2ClassChild,b3ClassChild);
 
 		if(result){
-			declareWinner(player);
+			DeclareWinner(player);
 		}
 
 
@@ -125,7 +161,7 @@ function CheckWinCondition() {
 		result = CheckLine(b1ClassChild,b2ClassChild,b3ClassChild);
 
 		if(result){
-			declareWinner(player);
+			DeclareWinner(player);
 		}
 
 
@@ -139,7 +175,7 @@ function CheckWinCondition() {
 		result = CheckLine(b1ClassChild,b2ClassChild,b3ClassChild);
 
 		if(result){
-			declareWinner(player);
+			DeclareWinner(player);
 		}
 
 
@@ -153,7 +189,7 @@ function CheckWinCondition() {
 		result = CheckLine(b1ClassChild,b2ClassChild,b3ClassChild);
 
 		if(result){
-			declareWinner(player);
+			DeclareWinner(player);
 		}
 
 
@@ -167,7 +203,7 @@ function CheckWinCondition() {
 		result = CheckLine(b1ClassChild,b2ClassChild,b3ClassChild);
 
 		if(result){
-			declareWinner(player);
+			DeclareWinner(player);
 		}
 
 
@@ -181,7 +217,7 @@ function CheckWinCondition() {
 		result = CheckLine(b1ClassChild,b2ClassChild,b3ClassChild);
 
 		if(result){
-			declareWinner(player);
+			DeclareWinner(player);
 		}
 	}
 
@@ -194,7 +230,7 @@ function CheckWinCondition() {
 	}
 
 	if(counterOld == 9){
-		declareWinner("Deu velha");
+		DeclareWinner("Deu velha");
 	}
 }
 	
@@ -214,7 +250,7 @@ function CheckLine(block1, block2, block3){
 
 
 //Limpa o jogo, declara o vencedor e atualiza o placar
-function declareWinner(winner){
+function DeclareWinner(winner){
 
 	let scoreboardX = document.querySelector("#scoreboard-1");
 	let scoreboardO = document.querySelector("#scoreboard-2");
@@ -249,5 +285,50 @@ function declareWinner(winner){
 
 	for(let i = 0; i < boxesRemove.length; i++){
 		boxesRemove[i].parentNode.removeChild(boxesRemove[i]);
+	}
+}
+
+//Função com ERRO
+//Computa a jogada da Inteligencia Artificial
+function ComputerPlay(){
+
+	let cloneO = o.cloneNode(true);
+	counter = 0;
+	filled = 0;
+	
+	//let randomNumber = Math.floor(Math.random() * 5);
+
+	//console.log(counter);
+	//console.log(filled);
+
+	for(let i = 0; i < boxes.length; i++){
+
+		let randomNumber = Math.floor(Math.random() * 9);
+
+		if(boxes[i].childNodes[0] == undefined && i == randomNumber){
+
+				boxes[i].appendChild(cloneO);
+				counter++;
+				break;
+			}else {
+				filled++;
+			}
+
+			if(counter == 0 && filled < 9){
+				ComputerPlay();
+			}
+		/*	boxes[i].appendChild(cloneO);
+			counter++;
+			break;
+		}else{
+			filled += 1; 
+		}
+
+		if(filled < 9 && counter == 0){
+			filled = 0;
+			console.log("Contei 8");
+			ComputerPlay();
+		}*/
+
 	}
 }
