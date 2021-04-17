@@ -36,6 +36,18 @@ h1 {
   	border-color: #007bff;
 }
 
+#buttons-container-2 button {
+	border: none;
+	padding: 10px 15px;
+	margin:0 15px 10px;
+}
+
+#continue-play, #back-play {
+	color: #fff;
+  	background-color: #007bff;
+  	border-color: #007bff;
+}
+
 /* jogo */
 
 #container {
