@@ -320,6 +320,8 @@ function ComputerPlay(){
 
 function ContinueOrBackPlay() {
 
+showClassCB(buttonContinue, buttonBack);
+
 container.classList.add("hide");
 
 	for(let i = 0; i < buttons.length; i++){
